@@ -11,11 +11,6 @@ def get_board(board):
 
     return(chessboard)
 
-def empty_space(chessboard,row,col):
-    if chessboard[row][col] == ' ':
-        return True
-    return False
-
 def white_piece(chessboard,row,col):
     if chessboard[row][col].isupper() and not chessboard[row][col].islower() and not chessboard[row][col] == ' ':
         return True
