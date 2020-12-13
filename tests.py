@@ -1,5 +1,5 @@
 import unittest
-from board import get_board, white_piece, best_move_white
+from board import get_board, white_piece, best_move_white, black_piece
 
 class test_sample(unittest.TestCase):
 
@@ -39,7 +39,25 @@ class test_sample(unittest.TestCase):
 
         self.assertTrue(is_white)
 
-    def test_sample_3(self):
+    def test_is_not_white_piece(self):
+
+        is_white = white_piece(self.starting_board, 0, 0)
+
+        self.assertFalse(is_white)
+
+    def test_black_piece(self):
+
+        is_black = black_piece(self.starting_board, 0, 0)
+
+        self.assertTrue(is_black)
+
+    def test_is_not_black_piece(self):
+
+        is_black = black_piece(self.starting_board, 15, 15)
+
+        self.assertFalse(is_black)
+
+    def test_best_move_white(self):
         # el primer movimiento es el mejor, porque es el que mas puntaje tiene
         move_white_sample = [[3,2,5,2,10],[5,7,5,8,5],[1,1,2,1,2]]
         result = best_move_white(move_white_sample)
