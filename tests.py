@@ -1,17 +1,46 @@
 import unittest
+from board import get_board, white_piece, best_move_white
 
 class test_sample(unittest.TestCase):
 
-    def test_sample_1(self):
-        expected_result = 6
+    def setUp(self):
+        self.starting_board = [                                                                                      
+            ["r","r","h","h","b","b","q","q","k","k","b","b","h","h","r","r"],
+            ["r","r","h","h","b","b","q","q","k","k","b","b","h","h","r","r"],
+            ["p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","p"],
+            ["p","p","p","p","p","p","p","p","p","p","p","p","p","p","p","p"],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "],
+            ["P","P","P","P","P","P","P","P","P","P","P","P","P","P","P","P"],
+            ["P","P","P","P","P","P","P","P","P","P","P","P","P","P","P","P"],
+            ["R","R","H","H","B","B","Q","Q","K","K","B","B","H","H","R","R"],
+            ["R","R","H","H","B","B","Q","Q","K","K","B","B","H","H","R","R"]
+        ]
 
-        self.assertEqual(expected_result, 6)
+    def test_get_board(self):
+        board_string = "rrhhbbqqkkbbhhrrrrhhbbqqkkbbhhrrpppppppppppppppppppppppppppppppp                                                                                                                                PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPRRHHBBQQKKBBHHRRRRHHBBQQKKBBHHRR"
+        expected_result_black_rook = self.starting_board[0][0]
+        expected_result_white_rook = self.starting_board[15][15]
+        result = get_board(board_string)
+        result_black_rook = result[0][0]
+        result_white_rook = result[15][15]
+        self.assertEqual(expected_result_black_rook, result_black_rook)
+        self.assertEqual(expected_result_white_rook, result_white_rook)
 
-    def test_sample_2(self):
-        expected_result = 6
+    def test_white_piece(self):
 
-        self.assertNotEqual(expected_result, 4)
+        is_white = white_piece(self.starting_board, 15, 15)
+
+        self.assertTrue(is_white)
 
     def test_sample_3(self):
-        expected_result = False
-        self.assertFalse(expected_result)
+        # el primer movimiento es el mejor, porque es el que mas puntaje tiene
+        move_white_sample = [[3,2,5,2,10],[5,7,5,8,5],[1,1,2,1,2]]
+        result = best_move_white(move_white_sample)
+        self.assertEqual(result[0], move_white_sample[0][0:4])

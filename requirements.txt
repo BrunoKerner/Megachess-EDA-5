@@ -1,4 +1,4 @@
 coverage==5.3
 coveralls==2.2.0
 websockets==8.1
-numpy==1.19.4
+numpy==1.19.3
