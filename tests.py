@@ -1,5 +1,5 @@
 import unittest
-from board import get_board, white_piece, best_move_white, black_piece, best_move_black
+from board import get_board, white_piece, best_move_white, black_piece, best_move_black, valid_white_move
 
 class test_sample(unittest.TestCase):
 
@@ -23,11 +23,12 @@ class test_sample(unittest.TestCase):
             ["R","R","H","H","B","B","Q","Q","K","K","B","B","H","H","R","R"]
         ]
 
+        self.starting_board_string = "rrhhbbqqkkbbhhrrrrhhbbqqkkbbhhrrpppppppppppppppppppppppppppppppp                                                                                                                                PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPRRHHBBQQKKBBHHRRRRHHBBQQKKBBHHRR"
+
     def test_get_board(self):
-        board_string = "rrhhbbqqkkbbhhrrrrhhbbqqkkbbhhrrpppppppppppppppppppppppppppppppp                                                                                                                                PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPRRHHBBQQKKBBHHRRRRHHBBQQKKBBHHRR"
         expected_result_black_rook = self.starting_board[0][0]
         expected_result_white_rook = self.starting_board[15][15]
-        result = get_board(board_string)
+        result = get_board(self.starting_board_string)
         result_black_rook = result[0][0]
         result_white_rook = result[15][15]
         self.assertEqual(expected_result_black_rook, result_black_rook)
@@ -68,3 +69,11 @@ class test_sample(unittest.TestCase):
         valid_black_moves_sample = [[3,2,5,2,10],[5,7,5,8,5],[1,1,2,1,2]]
         result = best_move_black(valid_black_moves_sample)
         self.assertEqual(result[0], valid_black_moves_sample[0][0:4])
+
+    def test_valid_white_move_pawn(self):
+        # 
+        board_string_sample_1 = "                                                                                                                                                                                q q              P                                                              "
+        valid_white_moves_sample = [[12, 1, 11, 0, 10], [12, 1, 11, 2, 10], [12, 1, 10, 1, 3], [12, 1, 11, 1, 1]]
+        get_board_sample_1 = get_board(board_string_sample_1)
+        result = valid_white_move(get_board_sample_1)
+        self.assertEqual(result, valid_white_moves_sample)
