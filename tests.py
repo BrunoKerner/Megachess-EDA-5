@@ -72,8 +72,8 @@ class test_sample(unittest.TestCase):
 
     def test_valid_white_move_pawn(self):
         # 
-        board_string_sample_1 = "                                                                                                                                                                                q q              P                                                              "
-        valid_white_moves_sample = [[12, 1, 11, 0, 10], [12, 1, 11, 2, 10], [12, 1, 10, 1, 3], [12, 1, 11, 1, 1]]
+        board_string_sample_1 = "                                                                                                                       P                                                        q q              P                    P                                         "
+        valid_white_moves_sample = [[7, 7, 6, 7, 4], [7, 7, 6, 7, 1], [12, 1, 11, 0, 10], [12, 1, 11, 2, 10], [12, 1, 10, 1, 3], [12, 1, 11, 1, 1], [13, 6, 11, 6, 3], [13, 6, 12, 6, 1]]
         get_board_sample_1 = get_board(board_string_sample_1)
         result = valid_white_move(get_board_sample_1)
         self.assertEqual(result, valid_white_moves_sample)
